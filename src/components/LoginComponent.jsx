@@ -18,29 +18,34 @@ export default function LoginComponent() {
     return (
         <div className="login-wrapper">
             <img src={LinkedInLogo} className="linkedInLogo"/>
+            <div className="login-wrapper-inner">
 
-            <h1 className="heading">Sign in</h1>
-            <p className="sub-heading">Stay updated on your professional world</p>
-            {/* 
-            <div className="auth-inputs">
-                <input
-                    onChange={(event) =>
-                        setCredentials({ ...credentials, email: event.target.value})
-                    }
-                    className='common-input' 
-                    placeholder='Enter your email'
-                />
-                <input 
-                    onChange={(event) => 
-                        setCredentials({ ...credentials, password: event.target.value})
-                    }
-                    className='common-input'
-                    placeholder='Enter your password'
-                />
+                <h1 className="heading">Sign in</h1>
+                <p className="sub-heading">Stay updated on your professional world</p>
+
+                <div className="auth-inputs">
+                    <input
+                        onChange={(event) =>
+                            setCredentials({ ...credentials, email: event.target.value})
+                        }
+                        type='email'
+                        className='common-input' 
+                        placeholder='Email or Phone'
+                    />
+                    <input 
+                        onChange={(event) => 
+                            setCredentials({ ...credentials, password: event.target.value})
+                        }
+                        type='password'
+                        className='common-input'
+                        placeholder='Enter your password'
+                    />
+                </div>
+                
+                <button onClick={login} className="login-btn">
+                        Sign in
+                </button>
             </div>
-            <button onClick={login} className="login-btn">
-                    Log in to LinkedIn
-            </button> */}
         </div>
     );
 }

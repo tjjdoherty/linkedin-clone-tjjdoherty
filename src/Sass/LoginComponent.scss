@@ -1,25 +1,73 @@
-.login-btn {
-    width: 150px;
-    height: 30px;
-    cursor: pointer;
-    background-color: #0a66c2;
-    color: white;
-    font-weight: bold;
+$linkedinBlue: #0a66c2;
+$linkedinBlue2: #07437e;
+
+body {
+    margin: 0;
+    padding: 0;
 }
 
 .login-wrapper {
     background-color: white;
-    .heading {
+    .login-wrapper-inner {
         margin-left: 200px;
+    }
+    .heading {
         font-family: system-ui;
         font-weight: 500;
         color: rgba(0, 0, 0, 0.9);
     }
 
     .sub-heading {
-        margin-left: 200px;
         margin-top: -20px;
         font-family: system-ui;
+    }
+}
+
+// should the below login-btn also be within .login-wrapper css?
+
+.login-btn {
+    width: 300px;
+    height: 50px;
+    cursor: pointer;
+    background-color: $linkedinBlue;
+    color: #ffffff;
+    font-weight: 600;
+    font-family: system-ui;
+    border-radius: 30px;
+    outline: none;
+    border: none;
+}
+
+.login-btn:hover {
+    background-color: $linkedinBlue2;
+}
+
+.auth-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 300px;
+
+    .common-input {
+        height: 30px;
+        padding: 10px;
+        background-color: white;
+        outline: none;
+        border: 1px solid #212121;
+        color: #212121;
+        border-radius: 3px;
+        font-family: system-ui;
+        font-size: 16px;
+        margin: 5px 0px;
+    }
+
+    .common-input:focus {
+        border: 2px solid $linkedinBlue;
+    }
+    ::placeholder {
+        font-size: 16px;
+        font-family: system-ui;
+        margin-top: 5px;
     }
 }
 
