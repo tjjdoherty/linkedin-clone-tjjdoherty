@@ -6,3 +6,24 @@
     color: white;
     font-weight: bold;
 }
+
+.login-wrapper {
+    background-color: white;
+    .heading {
+        margin-left: 200px;
+        font-family: system-ui;
+        font-weight: 500;
+        color: rgba(0, 0, 0, 0.9);
+    }
+
+    .sub-heading {
+        margin-left: 200px;
+        margin-top: -20px;
+        font-family: system-ui;
+    }
+}
+
+.linkedInLogo {
+    width: 80px;
+
+}

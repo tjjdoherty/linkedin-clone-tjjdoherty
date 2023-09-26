@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { LoginAPI } from "../api/AuthAPI";
 import '../Sass/LoginComponent.scss';
+import LinkedInLogo from "../assets/linkedInLogo.png";
 
 export default function LoginComponent() {
     const [credentials, setCredentials] = useState({});
@@ -16,7 +17,11 @@ export default function LoginComponent() {
     // see 00:31:11
     return (
         <div className="login-wrapper">
-            <h1>LoginComponent</h1>
+            <img src={LinkedInLogo} className="linkedInLogo"/>
+
+            <h1 className="heading">Sign in</h1>
+            <p className="sub-heading">Stay updated on your professional world</p>
+            {/* 
             <div className="auth-inputs">
                 <input
                     onChange={(event) =>
@@ -35,7 +40,7 @@ export default function LoginComponent() {
             </div>
             <button onClick={login} className="login-btn">
                     Log in to LinkedIn
-            </button>
+            </button> */}
         </div>
     );
 }
