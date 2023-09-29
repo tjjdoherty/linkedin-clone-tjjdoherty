@@ -1,5 +1,5 @@
 $linkedinBlue: #0a66c2;
-$linkedinBlue2: #07437e;
+$linkedinBlue2: #09539d;
 
 body {
     margin: 0;
@@ -8,6 +8,7 @@ body {
 
 .login-wrapper {
     background-color: white;
+    height: 100vh;
     .login-wrapper-inner {
         margin-left: 200px;
     }
@@ -36,6 +37,8 @@ body {
     border-radius: 30px;
     outline: none;
     border: none;
+    font-size: 16px;
+    margin-top: 20px;
 }
 
 .login-btn:hover {
@@ -75,3 +78,58 @@ body {
     width: 80px;
 
 }
+
+.hr-text {
+    line-height: 1em;
+    position: relative;
+    outline: 0;
+    border: 0;
+    color: black;
+    text-align: center;
+    height: 1.5em;
+    opacity: .5;
+    &:before {
+      content: '';
+      // use the linear-gradient for the fading effect
+      // use a solid background color for a solid bar
+      background: linear-gradient(to right, transparent, #818078, transparent);
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 100%;
+      height: 1px;
+    }
+    &:after {
+      content: attr(data-content);
+      position: relative;
+      display: inline-block;
+      color: black;
+  
+      padding: 0 .5em;
+      line-height: 1.5em;
+      // this is really the only tricky part, you need to specify the background color of the container element...
+      color: #818078;
+      background-color: #fcfcfa;
+    }
+  }
+
+.google-btn-container {
+    margin-left: 200px;
+    
+    .google-btn {
+        width: 300px !important;
+    }
+
+    .go-to-signup {
+        margin-left: 50px;
+        font-size: 16px;
+    }
+
+    .join-now {
+        color: $linkedinBlue;
+        font-family: system-ui;
+        cursor: pointer;
+        font-size: 16px;
+    }
+}
+
