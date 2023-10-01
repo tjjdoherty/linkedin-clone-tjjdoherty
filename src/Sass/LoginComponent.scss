@@ -82,17 +82,19 @@ body {
 .hr-text {
     line-height: 1em;
     position: relative;
+    margin-left: 200px;
     outline: 0;
     border: 0;
     color: black;
     text-align: center;
     height: 1.5em;
     opacity: .5;
+    width: 300px;
     &:before {
       content: '';
       // use the linear-gradient for the fading effect
       // use a solid background color for a solid bar
-      background: linear-gradient(to right, transparent, #818078, transparent);
+      background: #818078;
       position: absolute;
       left: 0;
       top: 50%;
