@@ -15,12 +15,12 @@ export default function Login() {
     useEffect(() => {
         onAuthStateChanged(auth, (response) => {
             if (response?.accessToken) {
-                // navigate("/home");
+                navigate("/home");
                 console.log("Logged in, no loader")
             } else {
                 setLoading(false);
             }
         });
     }, []);
-    return <LoginComponent />;
+    return loading ? <Loader /> : <LoginComponent />;
 }
