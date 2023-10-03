@@ -27,7 +27,6 @@ export default function LoginComponent() {
         navigate("/home");
     };
 
-    // see 00:31:11
     return (
             <div className="login-wrapper">
                 <img src={LinkedInLogo} className="linkedInLogo"/>
@@ -58,8 +57,8 @@ export default function LoginComponent() {
                     <button onClick={login} className="login-btn">
                             Sign in
                     </button>
+                    <hr className="hr-text" data-content="or"></hr>
                 </div>
-                <hr className="hr-text" data-content="or"></hr>
                 <div className="google-btn-container">
                     <GoogleButton
                     className="google-btn"

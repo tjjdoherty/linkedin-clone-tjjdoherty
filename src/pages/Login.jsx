@@ -3,7 +3,7 @@ import LoginComponent from "../components/LoginComponent";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from '../firebaseConfig';
 import { useNavigate } from "react-router-dom";
-import Loader from "../components/common/Loader";
+import Loader from "../components/common/Loader/index";
 
 // onAuthStateChange - if an accessToken is found (because a user provided valid credentials) then navigate them to the home page, now they're signed into the portal
 
@@ -15,12 +15,12 @@ export default function Login() {
     useEffect(() => {
         onAuthStateChanged(auth, (response) => {
             if (response?.accessToken) {
-                navigate("/home");
+                // navigate("/home");
                 console.log("Logged in, no loader")
             } else {
                 setLoading(false);
             }
         });
     }, []);
-    return loading ? <Loader /> : <LoginComponent />;
+    return <LoginComponent />;
 }
