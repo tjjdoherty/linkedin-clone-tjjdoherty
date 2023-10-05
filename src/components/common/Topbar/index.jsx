@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './index.scss';
 import LinkedInLogo from '../../../assets/linkedInLogo.png';
 import { BiSearchAlt2, BiHome, BiSolidBriefcaseAlt, BiMessageAltDetail } from 'react-icons/bi';
@@ -6,17 +7,43 @@ import { BsPeopleFill } from 'react-icons/bs';
 import { IoMdNotificationsOutline } from 'react-icons/io';
 import user from '../../../assets/userIcon.png';
 
+//const goToRoute - this is the navigate function for all of the top bar icons. Line 2 import useNavigate from react router dom...no need for the helpers/useNavigate?
+
 export default function Topbar() {
+    let navigate = useNavigate();
+    const goToRoute = (route) => {
+        navigate(route);
+    }
     return (
         <div className="topbar-main">
             <img className="linkedInLogo" src={LinkedInLogo} alt='LinkedInLogo' />
             <div className="react-icons">    
-                <BiSearchAlt2 size={35} className="react-icon" />
-                <BiHome size={35} className="react-icon" />
-                <BsPeopleFill size={35} className="react-icon" />
-                <BiSolidBriefcaseAlt size={35} className="react-icon" />
-                <BiMessageAltDetail size={35} className="react-icon" />
-                <IoMdNotificationsOutline size={35} className="react-icon" />
+                <BiSearchAlt2 
+                    size={35} 
+                    className="react-icon" 
+                />
+                <BiHome
+                    size={35} 
+                    className="react-icon" 
+                    onClick={() => goToRoute("/home")} 
+                />
+                <BsPeopleFill 
+                    size={35} 
+                    className="react-icon"
+                    onClick={() => goToRoute("/profile")}
+                />
+                <BiSolidBriefcaseAlt 
+                    size={35} 
+                    className="react-icon" 
+                />
+                <BiMessageAltDetail 
+                    size={35} 
+                    className="react-icon" 
+                />
+                <IoMdNotificationsOutline 
+                    size={35} 
+                    className="react-icon" 
+                />
             </div>
             <img className="userLogo" src={user} alt='user' />
         </div>
