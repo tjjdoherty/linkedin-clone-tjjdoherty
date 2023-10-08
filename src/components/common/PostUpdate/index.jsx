@@ -8,7 +8,7 @@ export default function PostStatus() {
     <div className="post-status-main">
         <div className="post-status">
             <button className="open-post-modal" onClick={() => setModalOpen(true)}>
-                Start a post
+                Start a post...
             </button>
         </div>
 

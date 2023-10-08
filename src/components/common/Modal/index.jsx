@@ -6,15 +6,21 @@ const ModalComponent = ({ modalOpen, setModalOpen }) => {
   return (
     <>
       <Modal
-        title="Vertically centered modal dialog"
+        title="Create a post"
         centered
         open={modalOpen}
         onOk={() => setModalOpen(false)}
         onCancel={() => setModalOpen(false)}
+        footer={[
+            <Button key="submit" type="primary" disabled>
+              Post
+            </Button>
+          ]}
       >
-        <p>some contents...</p>
-        <p>some contents...</p>
-        <p>some contents...</p>
+        <input 
+            className="modal-input" 
+            placeholder="What do you want to talk about?"
+        />
       </Modal>
     </>
   );
