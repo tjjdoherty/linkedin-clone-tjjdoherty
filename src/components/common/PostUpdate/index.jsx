@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { PostStatusData } from '../../../api/FirestoreAPI';
+import React, { useState, useMemo } from 'react';
+import { PostStatusData, getStatus } from '../../../api/FirestoreAPI';
 import './index.scss';
 import ModalComponent from '../Modal';
 
@@ -8,9 +8,19 @@ import ModalComponent from '../Modal';
 export default function PostStatus() {
     const [modalOpen, setModalOpen] = useState(false);
     const [status, setStatus] = useState("");
-    const sendStatus = () => {
-        PostStatusData(status);
+    const [allStatus, setAllStatus] = useState([]);
+    const sendStatus = async () => {
+        await PostStatusData(status);
+        await setModalOpen(false);
+        await setStatus("");
     };
+
+    useMemo(() => {
+        getStatus(setAllStatus)
+    }, []);
+
+    console.log(allStatus);
+        
     return (
     <div className="post-status-main">
         <div className="post-status">
