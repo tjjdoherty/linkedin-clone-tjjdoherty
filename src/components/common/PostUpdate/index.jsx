@@ -1,7 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import { PostStatusData, getStatus } from '../../../api/FirestoreAPI';
-import './index.scss';
 import ModalComponent from '../Modal';
+import PostsCard from "../PostsCard";
+import './index.scss';
+
 
 // PostStatus - the typing and adding content to post a status. PostStatusData is from the Firestore API to update the database. PostStatusData = postStatus from vid
 
@@ -19,8 +21,7 @@ export default function PostStatus() {
         getStatus(setAllStatus)
     }, []);
 
-    console.log(allStatus);
-        
+
     return (
     <div className="post-status-main">
         <div className="post-status">
@@ -36,6 +37,13 @@ export default function PostStatus() {
             status={status}
             sendStatus={sendStatus}
         />
+        <div>
+        {allStatus.map((posts) => {
+            return (
+                <PostsCard posts={posts}/>
+            )
+        })}
+        </div>
     </div>
     );
 }
