@@ -5,24 +5,23 @@ import PostsCard from "../PostsCard";
 import { getCurrentTimeStamp } from '../../../helpers/useMoment';
 import './index.scss';
 
-
 // PostStatus - the typing and adding content to post a status. PostStatusData is from the Firestore API to update the database. PostStatusData = postStatus from vid
 
 export default function PostStatus() {
+    let userEmail = localStorage.getItem('userEmail');
     const [modalOpen, setModalOpen] = useState(false);
     const [status, setStatus] = useState("");
     const [allStatus, setAllStatus] = useState([]);
     const sendStatus = async () => {
         let object = {
             status: status,
-            timeStamp: getCurrentTimeStamp("LLLL"),
+            timeStamp: getCurrentTimeStamp("LLL"),
+            userEmail: userEmail,
         };
-        await PostStatusData(status);
+        await PostStatusData(object);
         await setModalOpen(false);
         await setStatus("");
     };
-
-    console.log(getCurrentTimeStamp("LLLL"));
 
     useMemo(() => {
         getStatus(setAllStatus)

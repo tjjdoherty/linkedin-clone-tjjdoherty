@@ -13,13 +13,13 @@ export default function LoginComponent() {
         try {
             let result = await LoginAPI(credentials.email, credentials.password);
             toast.success('Signed in to LinkedIn!');
+            localStorage.setItem('userEmail', result.user.email);
             navigate("/home");
         } catch (err) {
             console.log(err);
             toast.error('Unable to login. Check your email or password.')
         }
     };
-    
 
     const googleSignIn = () => {
         let response = GoogleSignInAPI();

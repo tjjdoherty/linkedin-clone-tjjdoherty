@@ -14,12 +14,12 @@ export default function RegisterComponent() {
             let result = await RegisterAPI(credentials.email, credentials.password);
             toast.success('Account Created!');
             navigate('/home');
+            localStorage.setItem('userEmail', result.user.email);
         } catch (err) {
             console.log(err);
             toast.error('Cannot Create Account')
         }
     };
-    
 
     const googleSignIn = () => {
         let response = GoogleSignInAPI();
