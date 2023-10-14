@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { RegisterAPI, GoogleSignInAPI } from "../api/AuthAPI";
+import { postUserData } from "../api/FirestoreAPI";
 import '../Sass/LoginComponent.scss';
 import LinkedInLogo from "../assets/linkedInLogo.png";
 import GoogleButton from 'react-google-button';
@@ -9,10 +10,11 @@ import { toast } from "react-toastify";
 export default function RegisterComponent() {
     let navigate = useNavigate();
     const [credentials, setCredentials] = useState({});
-    const login = async () => {
+    const register = async () => {
         try {
             let result = await RegisterAPI(credentials.email, credentials.password);
             toast.success('Account Created!');
+            postUserData({name: credentials.name, email: credentials.email, password: credentials.password});
             navigate('/home');
             localStorage.setItem('userEmail', result.user.email);
         } catch (err) {
@@ -37,6 +39,14 @@ export default function RegisterComponent() {
                     <div className="auth-inputs">
                         <input
                             onChange={(event) =>
+                                setCredentials({ ...credentials, name: event.target.value})
+                            }
+                            type='text'
+                            className='common-input' 
+                            placeholder='Your Name'
+                        />
+                        <input
+                            onChange={(event) =>
                                 setCredentials({ ...credentials, email: event.target.value})
                             }
                             type='email'
@@ -53,7 +63,7 @@ export default function RegisterComponent() {
                         />
                     </div>
 
-                    <button onClick={login} className="login-btn">
+                    <button onClick={register} className="login-btn">
                             Agree & Join
                     </button>
                 </div>
