@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './index.scss';
 import LinkedInLogo from '../../../assets/linkedInLogo.png';
@@ -6,14 +6,18 @@ import { BiSearchAlt2, BiHome, BiSolidBriefcaseAlt, BiMessageAltDetail } from 'r
 import { BsPeopleFill } from 'react-icons/bs';
 import { IoMdNotificationsOutline } from 'react-icons/io';
 import user from '../../../assets/userIcon.png';
+import ProfilePopup from '../ProfilePopup';
 
 //const goToRoute - this is the navigate function for all of the top bar icons. Line 2 import useNavigate from react router dom...no need for the helpers/useNavigate?
 
 export default function Topbar() {
+    const [profilePopupOpen, setProfilePopupOpen] = useState(false);
     let navigate = useNavigate();
+
     const goToRoute = (route) => {
         navigate(route);
     }
+
     return (
         <div className="topbar-main">
             <img className="linkedInLogo" src={LinkedInLogo} alt='LinkedInLogo' />
@@ -45,7 +49,13 @@ export default function Topbar() {
                     className="react-icon" 
                 />
             </div>
-            <img className="userLogo" src={user} alt='user' />
+            <img 
+                className="userLogo" 
+                src={user} 
+                alt='user' 
+                onClick={() => setProfilePopupOpen(!profilePopupOpen)}
+            />
+            {profilePopupOpen && <ProfilePopup />}
         </div>
     )
 }

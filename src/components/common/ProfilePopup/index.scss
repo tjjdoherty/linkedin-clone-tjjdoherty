@@ -1,0 +1,14 @@
+.popup-card {
+    position: absolute;
+    top: 70px;
+    right: 10px;
+    width: 200px;
+    background-color: white;
+    border: 1px solid black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.popup-option {
+    cursor: pointer;
+}
