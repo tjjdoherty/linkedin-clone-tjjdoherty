@@ -8,7 +8,7 @@ import './index.scss';
 
 // PostStatus - the typing and adding content to post a status. PostStatusData is from the Firestore API to update the database. PostStatusData = postStatus from vid
 // currentUser - passed from the firestore API file where the object containing name, email and password is handed down as state
-// all of those data points in object (line 19) are there from the initial register component/firestore API so that they can be used on the front end for rendering in posts/comments!!
+// all of those data points in object (line 18) are there from the initial register component/firestore API so that they can be used on the front end for rendering in posts/comments!!
 
 export default function PostStatus({ currentUser }) {
     const [modalOpen, setModalOpen] = useState(false);

@@ -56,14 +56,5 @@ export const getCurrentUser = (setCurrentUser) => {
                 return item.email === currEmail;
             })[0]
         )
-        console.log(
-            response.docs
-            .map((docs) => {
-                return { ...docs.data(), userID: docs.id }
-            })
-            .filter((item) => {
-                return item.email === currEmail;
-            })[0]
-        )
     })
 }
