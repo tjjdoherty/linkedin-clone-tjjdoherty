@@ -23,6 +23,8 @@ export default function RegisterComponent() {
         }
     };
 
+    // above ^ postUserData is storing the name, email and password, this is where it will enter the Firestore database
+
     const googleSignIn = () => {
         let response = GoogleSignInAPI();
         console.log(response);

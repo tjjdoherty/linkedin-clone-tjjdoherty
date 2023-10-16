@@ -7,9 +7,10 @@ import { getCurrentTimeStamp } from '../../../helpers/useMoment';
 import './index.scss';
 
 // PostStatus - the typing and adding content to post a status. PostStatusData is from the Firestore API to update the database. PostStatusData = postStatus from vid
+// currentUser - passed from the firestore API file where the object containing name, email and password is handed down as state
+// all of those data points in object (line 19) are there from the initial register component/firestore API so that they can be used on the front end for rendering in posts/comments!!
 
 export default function PostStatus({ currentUser }) {
-    let userEmail = localStorage.getItem('userEmail');
     const [modalOpen, setModalOpen] = useState(false);
     const [status, setStatus] = useState("");
     const [allStatus, setAllStatus] = useState([]);
@@ -17,7 +18,7 @@ export default function PostStatus({ currentUser }) {
         let object = {
             status: status,
             timeStamp: getCurrentTimeStamp("LLL"),
-            userEmail: userEmail,
+            userEmail: currentUser.email,
             userName: currentUser.name,
             postID: getUniqueID(),
         };
@@ -49,7 +50,9 @@ export default function PostStatus({ currentUser }) {
         <div>
         {allStatus.map((posts) => {
             return (
-                <PostsCard posts={posts}/>
+                <div key={posts.id}>
+                    <PostsCard posts={posts}/>
+                </div>
             )
         })}
         </div>
