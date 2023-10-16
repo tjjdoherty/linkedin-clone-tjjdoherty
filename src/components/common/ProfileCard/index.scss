@@ -5,12 +5,31 @@
     margin: 30px;
     border-radius: 5px;
     padding: 20px;
+    position: relative;
 
-    .username{
+    .edit-btn{
+        position: absolute;
+        right: 20px;
+
+        button {
+            font-family: system-ui;
+            background-color: white;
+            cursor: pointer;
+        }
+    }
+
+    .userName{
         font-family: system-ui;
         font-weight: 600px;
         color: rgba(0, 0, 0, 0.9);
         font-size: 24px;
+    }
+
+    .userEmail {
+        margin-top: -20px;
+        font-family: system-ui;
+        color: rgba(0, 0, 0, 0.9);
+        font-size: 16px;
     }
 
 }
