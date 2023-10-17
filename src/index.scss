@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url('./components/common/common.scss');
 
+$linkedinBlue: #0a66c2;
+$linkedinBlue2: #09539d;
+$linkedinBlue3: #004c75;
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -17,3 +21,24 @@
   -webkit-text-size-adjust: 100%;
 }
 
+.common-input {
+  height: 30px;
+  padding: 10px;
+  background-color: white;
+  outline: none;
+  border: 1px solid #212121;
+  color: #212121;
+  border-radius: 3px;
+  font-family: system-ui;
+  font-size: 16px;
+  margin: 5px 0px;
+}
+
+.common-input:focus {
+  border: 2px solid $linkedinBlue;
+}
+::placeholder {
+  font-size: 16px;
+  font-family: system-ui;
+  margin-top: 5px;
+}
