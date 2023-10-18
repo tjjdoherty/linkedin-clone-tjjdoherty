@@ -1,5 +1,5 @@
 import { firestore } from '../firebaseConfig';
-import { addDoc, collection, onSnapshot } from 'firebase/firestore';
+import { addDoc, collection, onSnapshot, doc, updateDoc } from 'firebase/firestore';
 import { toast } from "react-toastify";
 
 // adding the object as well as postsRef because object may include images, video, or emoji files in addition to just text in the status update. dbRef became postsRef
@@ -57,4 +57,17 @@ export const getCurrentUser = (setCurrentUser) => {
             })[0]
         )
     })
+}
+
+export const editProfile = (userID, payload) => {
+    let userToEdit = doc(userRef, userID)
+
+    updateDoc(userToEdit, payload)
+    .then(() => {
+        toast.success("Updated Profile Details");
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+
 }

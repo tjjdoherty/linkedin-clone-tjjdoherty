@@ -10,7 +10,11 @@ export default function ProfileComponent({ currentUser }) {
     };
     return (
         <div>
-            { isEdit ? <ProfileEdit onEdit={onEdit} /> : <ProfileCard currentUser={currentUser} onEdit={onEdit}/> }
+            { isEdit ? 
+            <ProfileEdit onEdit={onEdit} currentUser={currentUser} /> 
+            : 
+            <ProfileCard currentUser={currentUser} onEdit={onEdit} /> 
+            }
         </div>
     )
 }

@@ -4,7 +4,7 @@ $linkedinBlue3: #004c75;
 
 .profile-card {
     width: auto;
-    height: 60vh;
+    height: auto;
     min-height: auto;
     background-color: rgba(255, 255, 255, 0.87);
     margin: 30px;
@@ -39,6 +39,29 @@ $linkedinBlue3: #004c75;
         font-size: 16px;
         font-family: system-ui;
         margin-top: 5px;
+    }
+
+    .save-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .save-btn {
+        width: 300px;
+        height: 50px;
+        cursor: pointer;
+        background-color: $linkedinBlue;
+        color: #ffffff;
+        font-weight: 600;
+        font-family: system-ui;
+        border-radius: 30px;
+        outline: none;
+        border: none;
+        font-size: 16px;
+        margin-top: 20px;
+    }
+    .save-btn:hover {
+        background-color: $linkedinBlue2;
     }
 
 }

@@ -15,8 +15,8 @@ export default function RegisterComponent() {
             let result = await RegisterAPI(credentials.email, credentials.password);
             toast.success('Account Created!');
             postUserData({name: credentials.name, email: credentials.email, password: credentials.password});
-            navigate('/home');
             localStorage.setItem('userEmail', result.user.email);
+            navigate('/home');
         } catch (err) {
             console.log(err);
             toast.error('Cannot Create Account')
@@ -30,6 +30,10 @@ export default function RegisterComponent() {
         console.log(response);
         navigate("/home");
     };
+
+    // each of the fields below in input labels uses setCredentials add to the credentials `object literal` one by one. first name, then email, then password
+    // it's captured in the credentials state as an object, and then the register onClick function in "Agree and Join" sets off adding it to the database with postUserData 
+    // this sends the credentials up to the firebase 
 
     return (
             <div className="login-wrapper">
