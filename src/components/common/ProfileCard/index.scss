@@ -7,6 +7,28 @@
     padding: 20px;
     position: relative;
 
+    .profile-info {
+        display: flex;
+        justify-content: space-between;
+
+        .right-info{
+            margin-top: 25px;
+            margin-right: 20px;
+
+            .college, .company {
+                font-family: system-ui;
+                color: rgba(0, 0, 0, 0.9);
+                font-size: 14px;
+                font-weight: 600;
+                line-height: 30px;
+            }
+
+            .company {
+                margin-top: -15px;
+            }
+        }
+    }
+
     .edit-btn{
         position: absolute;
         right: 20px;
@@ -25,11 +47,13 @@
         font-size: 24px;
     }
 
-    .userEmail {
-        margin-top: -20px;
+    .heading {
+        margin-top: -25px;
         font-family: system-ui;
         color: rgba(0, 0, 0, 0.9);
         font-size: 16px;
+        font-weight: 600;
+        width: 320px;
+        line-height: 20px;
     }
-
 }

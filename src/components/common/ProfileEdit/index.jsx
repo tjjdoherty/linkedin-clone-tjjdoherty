@@ -13,8 +13,11 @@ export default function ProfileEdit({ onEdit, currentUser }) {
 
     // console.log(editInputs);
 
-    const updateProfileData = () => {
-        editProfile(currentUser?.userID, editInputs);
+    // updateProfileData sends all the updates to Firestore and onEdit is the condition that toggles between the profile and profile edit page.
+
+    const updateProfileData = async () => {
+        await editProfile(currentUser?.userID, editInputs);
+        await onEdit();
     }
 
     return (
@@ -27,7 +30,7 @@ export default function ProfileEdit({ onEdit, currentUser }) {
                     className="common-input" 
                     placeholder="Name" 
                     onChange={getInput}
-                    name='Name'
+                    name='name'
                 />
 
                 <input 
@@ -53,7 +56,7 @@ export default function ProfileEdit({ onEdit, currentUser }) {
                 
                 <input 
                     className="common-input" 
-                    placeholder="College" 
+                    placeholder="College or University" 
                     onChange={getInput} 
                     name='college'
                 />
