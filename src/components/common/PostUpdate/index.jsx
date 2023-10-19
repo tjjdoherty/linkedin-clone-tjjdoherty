@@ -9,6 +9,7 @@ import './index.scss';
 // PostStatus - the typing and adding content to post a status. PostStatusData is from the Firestore API to update the database. PostStatusData = postStatus from vid
 // currentUser - passed from the firestore API file where the object containing name, email and password is handed down as state
 // all of those data points in object (line 18) are there from the initial register component/firestore API so that they can be used on the front end for rendering in posts/comments!!
+// added userID (line 24 so you can see your own posts when you jump to the profile page via the name link in a single post)
 
 export default function PostStatus({ currentUser }) {
     const [modalOpen, setModalOpen] = useState(false);
@@ -20,6 +21,7 @@ export default function PostStatus({ currentUser }) {
             timeStamp: getCurrentTimeStamp("LLL"),
             userEmail: currentUser.email,
             userName: currentUser.name,
+            userID: currentUser.userID,
             postID: getUniqueID(),
         };
         await PostStatusData(object);

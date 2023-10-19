@@ -1,5 +1,5 @@
 import { firestore } from '../firebaseConfig';
-import { addDoc, collection, onSnapshot, doc, updateDoc } from 'firebase/firestore';
+import { addDoc, collection, onSnapshot, doc, updateDoc, query, where, } from 'firebase/firestore';
 import { toast } from "react-toastify";
 
 // adding the object as well as postsRef because object may include images, video, or emoji files in addition to just text in the status update. dbRef became postsRef
@@ -9,7 +9,9 @@ import { toast } from "react-toastify";
 // As soon as that happens the setAllStatus/setCurrentUser will update
 
 // these methods and currentUser starts being passed down as a state from layouts 
-// e.g. profileLayout takes getCurrentUser from this API --> Profile page --> ProfileComponent
+// GET CURRENT USER takes SET CURRENT USER from LAYOUTS page. This is where currentUser starts being passed down as props through profile/Home --> profileComponent/HomeComponent
+
+// use Location hook (from react )
 
 let postsRef = collection(firestore, "posts");
 let userRef = collection(firestore, "users");
@@ -34,6 +36,28 @@ export const getStatus = (setAllStatus) => {
             })
         )
     })
+};
+
+export const getSingleStatus = (setAllStatus, id) => {
+    const singlePostQuery = query(postsRef, where("userID", "==", id));
+    onSnapshot(singlePostQuery, (response) => {
+        setAllStatus(
+            response.docs.map((docs) => {
+                return { ...docs.data(), id: docs.id };
+            })
+        );
+    });
+};
+
+export const getSingleUser = (setCurrentUser, email) => {
+    const singleUserQuery = query(userRef, where("email", "==", email));
+    onSnapshot(singleUserQuery, (response) => {
+        setCurrentUser(
+            response.docs.map((docs) => {
+                return { ...docs.data(), id: docs.id };
+            })[0]
+        );
+    });
 };
 
 export const postUserData = (object) => {

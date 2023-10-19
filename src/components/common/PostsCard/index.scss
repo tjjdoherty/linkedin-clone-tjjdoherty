@@ -11,10 +11,12 @@
 
     .name {
         font-family: system-ui, sans-serif;
-        font-size: 14px;
-        color: rgba(0, 0, 0, 0.6);
+        font-size: 16px;
+        color: rgba(154, 66, 255, 0.897);
         font-weight: 600;
         margin: 10px 0 0 10px;
+        text-decoration: underline;
+        cursor: pointer;
     }
 
     .timeStamp {

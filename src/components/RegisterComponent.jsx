@@ -5,6 +5,7 @@ import '../Sass/LoginComponent.scss';
 import LinkedInLogo from "../assets/linkedInLogo.png";
 import GoogleButton from 'react-google-button';
 import { useNavigate } from "react-router-dom";
+import { getUniqueID } from "../helpers/getUniqueId";
 import { toast } from "react-toastify";
 
 export default function RegisterComponent() {
@@ -14,7 +15,12 @@ export default function RegisterComponent() {
         try {
             let result = await RegisterAPI(credentials.email, credentials.password);
             toast.success('Account Created!');
-            postUserData({name: credentials.name, email: credentials.email, password: credentials.password});
+            postUserData({
+                userID: getUniqueID(),
+                name: credentials.name,
+                email: credentials.email, 
+                password: credentials.password
+            });
             localStorage.setItem('userEmail', result.user.email);
             navigate('/home');
         } catch (err) {
@@ -23,7 +29,7 @@ export default function RegisterComponent() {
         }
     };
 
-    // above ^ postUserData is storing the name, email and password, this is where it will enter the Firestore database
+    // above ^ postUserData is storing the unique ID (to match your own post/profile), name, email and password, this is where it will enter the Firestore database
 
     const googleSignIn = () => {
         let response = GoogleSignInAPI();
