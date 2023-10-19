@@ -8,6 +8,9 @@ import { toast } from "react-toastify";
 // purpose of getStatus and getCurrentUser - onSnapshot will listen for changes when new posts are added or new users are signed up. 
 // As soon as that happens the setAllStatus/setCurrentUser will update
 
+// these methods and currentUser starts being passed down as a state from layouts 
+// e.g. profileLayout takes getCurrentUser from this API --> Profile page --> ProfileComponent
+
 let postsRef = collection(firestore, "posts");
 let userRef = collection(firestore, "users");
 
@@ -31,7 +34,7 @@ export const getStatus = (setAllStatus) => {
             })
         )
     })
-}
+};
 
 export const postUserData = (object) => {
     addDoc(userRef, object)
@@ -39,9 +42,10 @@ export const postUserData = (object) => {
     .catch((err) => {
         console.log(err);
     });
-}
+};
 
 // line 47 localStorage getItem because in RegisterComponent, we did localStorage setItem userEmail
+//setCurrentUser is not returning the email address, it's returning the full user object whose email address in local storage matches the email in the user object
 
 export const getCurrentUser = (setCurrentUser) => {
     let currEmail = localStorage.getItem('userEmail')
