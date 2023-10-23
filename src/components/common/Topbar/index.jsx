@@ -10,7 +10,7 @@ import ProfilePopup from '../ProfilePopup';
 
 //const goToRoute - this is the navigate function for all of the top bar icons. Line 2 import useNavigate from react router dom...no need for the helpers/useNavigate?
 
-export default function Topbar() {
+export default function Topbar({ currentUser }) {
     const [profilePopupOpen, setProfilePopupOpen] = useState(false);
     let navigate = useNavigate();
 
@@ -55,7 +55,7 @@ export default function Topbar() {
                 alt='user' 
                 onClick={() => setProfilePopupOpen(!profilePopupOpen)}
             />
-            {profilePopupOpen && <ProfilePopup />}
+            {profilePopupOpen && <ProfilePopup currentUser={currentUser}/>}
         </div>
     )
 }

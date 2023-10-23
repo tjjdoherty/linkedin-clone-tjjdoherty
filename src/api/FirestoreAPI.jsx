@@ -13,6 +13,9 @@ import { toast } from "react-toastify";
 
 // use Location hook (from react )
 
+// IMPORTANT!!!!! every post now logs the User ID of the user who wrote it, so you can get to the profile page. 
+// BUt it's logging users.id (the firebase generated one) NOT the getUniqueID one. Be careful if this is important later on...
+
 let postsRef = collection(firestore, "posts");
 let userRef = collection(firestore, "users");
 

@@ -1,14 +1,22 @@
+// check 4:56:00 in the video - he makes this top and centre but you might not want to
+
 .popup-card {
     position: absolute;
     top: 70px;
     right: 10px;
     width: 200px;
     background-color: white;
-    border: 1px solid black;
+    border: 1px solid #a8a8a8;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    
+    .popup-option {
+        cursor: pointer;
+        margin-left: 15px;
+    }
 }
 
-.popup-option {
-    cursor: pointer;
-}

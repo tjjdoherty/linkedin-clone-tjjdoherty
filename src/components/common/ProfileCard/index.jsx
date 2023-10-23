@@ -26,6 +26,8 @@ export default function ProfileCard({ currentUser, onEdit }) {
         }
     }, []);
 
+    console.log(currentProfile);
+
     return ( 
         <>
             <div className="profile-card">
