@@ -29,14 +29,21 @@
         }
     }
 
-    .edit-btn{
+    .edit-btn {
         position: absolute;
         right: 20px;
 
-        button {
-            font-family: system-ui;
-            background-color: white;
+        .edit-icon {
             cursor: pointer;
+            height: 30px;
+            width: 30px;
+            padding: 8px;
+        }
+
+        .edit-icon:hover {
+            background-color: whitesmoke;
+            border-radius: 50%;
+            padding: 8px;
         }
     }
 

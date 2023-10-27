@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { getSingleStatus, getSingleUser } from '../../../api/FirestoreAPI';
 import PostsCard from "../PostsCard";
+import { HiOutlinePencil } from 'react-icons/hi';
 import { useLocation } from "react-router-dom";
 import "./index.scss";
 
@@ -32,7 +33,7 @@ export default function ProfileCard({ currentUser, onEdit }) {
         <>
             <div className="profile-card">
                 <div className="edit-btn">
-                    <button onClick={onEdit}>Edit</button>
+                    <HiOutlinePencil className="edit-icon" onClick={onEdit}/>
                 </div>
                 <div className="profile-info">
                     <div>
