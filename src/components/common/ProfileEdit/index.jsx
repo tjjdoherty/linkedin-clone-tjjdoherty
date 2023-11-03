@@ -42,13 +42,13 @@ export default function ProfileEdit({ onEdit, currentUser }) {
                     name='headline'
                     value={editInputs.headline}
                 />        
-                <label>Location</label>
+                <label>Country</label>
                 <input 
                     className="common-input" 
-                    placeholder="Location" 
+                    placeholder="Country" 
                     onChange={getInput}
-                    name='location'
-                    value={editInputs.location}
+                    name='country'
+                    value={editInputs.country}
                 />
                 <label>City</label>
                 <input 
@@ -99,6 +99,14 @@ export default function ProfileEdit({ onEdit, currentUser }) {
                     cols={5}
                     name="aboutMe" 
                     value={editInputs.aboutMe} 
+                />
+                <label>Skills</label>
+                <input 
+                    className="common-input" 
+                    placeholder="Skills include..." 
+                    onChange={getInput} 
+                    name='skills'
+                    value={editInputs.skills}
                 />
             </div>
             <div className="save-container">

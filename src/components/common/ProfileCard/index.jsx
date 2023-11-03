@@ -49,10 +49,22 @@ export default function ProfileCard({ currentUser, onEdit }) {
                         </p>
                         <p className="location">
                             {Object.values(currentProfile).length === 0
-                                ? currentUser.location 
+                                ? `${currentUser.location}, ${currentUser.country}` 
                                 : currentProfile?.location}
                         </p>
+                        <a  className="website"
+                            target='_blank'
+                            href={Object.values(currentProfile).length === 0
+                                ? `${currentUser.website}` 
+                                : currentProfile?.website
+                            }
+                        >
+                            {Object.values(currentProfile).length === 0
+                                ? `${currentUser.website}` 
+                                : currentProfile?.website}
+                        </a>
                     </div>
+
                     <div className="right-info">
                         <p className="college">
                             {Object.values(currentProfile).length === 0
@@ -66,6 +78,17 @@ export default function ProfileCard({ currentUser, onEdit }) {
                         </p>
                     </div>
                 </div>
+                <p className="about-me">
+                            {Object.values(currentProfile).length === 0
+                                ? currentUser.aboutMe 
+                                : currentProfile?.aboutMe}
+                </p>
+                <p className="skills">
+                    <span className="skill-label">Key Skills:&nbsp;</span>
+                            {Object.values(currentProfile).length === 0
+                                ? currentUser.skills
+                                : currentProfile?.skills}
+                </p>
             </div>
             
             <div className="post-status-main">
