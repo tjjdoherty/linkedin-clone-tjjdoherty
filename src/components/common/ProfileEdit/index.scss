@@ -26,6 +26,14 @@ $linkedinBlue3: #004c75;
         }
     }
 
+    .close-icon {
+        cursor: pointer;
+    }
+
+    .close-icon:hover {
+        background-color: rgb(212, 212, 212);
+        border-radius: 50%;
+    }
     .common-input {
         height: 30px;
         padding: 10px;
