@@ -49,7 +49,7 @@ export default function ProfileCard({ currentUser, onEdit }) {
                         </p>
                         <p className="location">
                             {Object.values(currentProfile).length === 0
-                                ? `Greater ${currentUser.location} area, ${currentUser.country}` 
+                                ? `Greater ${currentUser.city} area, ${currentUser.country}` 
                                 : `Greater ${currentProfile?.city} area, ${currentProfile?.country}`}
                         </p>
                         <a  className="website"
