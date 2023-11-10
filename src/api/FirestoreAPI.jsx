@@ -1,5 +1,5 @@
 import { firestore } from '../firebaseConfig';
-import { addDoc, collection, onSnapshot, doc, updateDoc, query, where, } from 'firebase/firestore';
+import { addDoc, collection, onSnapshot, doc, updateDoc, query, where, setDoc } from 'firebase/firestore';
 import { toast } from "react-toastify";
 
 // adding the object as well as postsRef because object may include images, video, or emoji files in addition to just text in the status update. dbRef became postsRef
@@ -8,16 +8,15 @@ import { toast } from "react-toastify";
 // purpose of getStatus and getCurrentUser - onSnapshot will listen for changes when new posts are added or new users are signed up. 
 // As soon as that happens the setAllStatus/setCurrentUser will update
 
-// these methods and currentUser starts being passed down as a state from layouts 
+// these methods and currentUser starts being passed down as props / a state, from layouts 
 // GET CURRENT USER takes SET CURRENT USER from LAYOUTS page. This is where currentUser starts being passed down as props through profile/Home --> profileComponent/HomeComponent
-
-// use Location hook (from react )
 
 // IMPORTANT!!!!! every post now logs the User ID of the user who wrote it, so you can get to the profile page. 
 // BUt it's logging users.id (the firebase generated one) NOT the getUniqueID one. Be careful if this is important later on...
 
 let postsRef = collection(firestore, "posts");
 let userRef = collection(firestore, "users");
+let likeRef = collection(firestore, "likes");
 
 export const PostStatusData = (object) => {
     addDoc(postsRef, object)
@@ -102,4 +101,17 @@ export const editProfile = (userID, payload) => {
         console.log(err);
     });
 
+}
+
+// likePost has created a likes table (similar to posts and users) which captures postId and userId,
+
+export const likePost = (userId, postId) => {
+    try {
+        let docToLike = doc(likeRef, `${userId}_${postId}`);
+
+        setDoc(docToLike, { userId, postId })
+    }
+    catch (err) {
+        console.log(err)
+    }
 }
