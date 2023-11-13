@@ -1,5 +1,5 @@
 import { firestore } from '../firebaseConfig';
-import { addDoc, collection, onSnapshot, doc, updateDoc, query, where, setDoc } from 'firebase/firestore';
+import { addDoc, collection, onSnapshot, doc, updateDoc, query, where, setDoc, deleteDoc } from 'firebase/firestore';
 import { toast } from "react-toastify";
 
 // adding the object as well as postsRef because object may include images, video, or emoji files in addition to just text in the status update. dbRef became postsRef
@@ -105,11 +105,18 @@ export const editProfile = (userID, payload) => {
 
 // likePost has created a likes table (similar to posts and users) which captures postId and userId,
 
-export const likePost = (userId, postId) => {
+// liked parameter - if the post is already liked and you click again to UN-LIKE we delete the like from the database (line 113)
+
+export const likePost = (userId, postId, liked) => {
     try {
         let docToLike = doc(likeRef, `${userId}_${postId}`);
-
+    if (liked) {
+        deleteDoc(docToLike);
+    }
+    else {
         setDoc(docToLike, { userId, postId })
+    }
+     
     }
     catch (err) {
         console.log(err)
@@ -124,7 +131,7 @@ export const getLikesByUser = (userId, postId, setLikesCount, setLiked) => {
             let likes = response.docs.map((doc) => doc.data())
             let likesCount = likes.length;
 
-            const isLiked = likes.some((like) => like.id === userId)
+            const isLiked = likes.some((like) => like.userId === userId)
 
             setLikesCount(likesCount);
             setLiked(isLiked);

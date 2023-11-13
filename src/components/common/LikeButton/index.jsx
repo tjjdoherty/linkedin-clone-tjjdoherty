@@ -8,10 +8,8 @@ export default function LikeButton({ userId, postId }) {
     const [liked, setLiked] = useState(false);
 
     const handleLike = () => {
-        likePost(userId, postId);
+        likePost(userId, postId, liked);
     };
-
-    // console.log(likesCount);
 
     useMemo (() => {
         getLikesByUser(userId, postId, setLikesCount, setLiked);
@@ -20,7 +18,7 @@ export default function LikeButton({ userId, postId }) {
     return (
         <div className="like-container" onClick={handleLike}>
             <BiLike size={25}/>
-            <p>Like</p>
+            <p>{liked ? (likesCount === 1 ? 'You like this' : `You and ${likesCount - 1} other${likesCount - 1 === 1 ? '' : 's' } like this`) : "Like"}</p>
             {likesCount}
         </div>
     )
