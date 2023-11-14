@@ -154,3 +154,27 @@ export const postComment = (postId, comment, timeStamp) => {
         console.log(err);
     }
 }
+
+// this below query is checking if the postId in the document in the database collection is the same as the postId for each post
+// because each post has a unique postId it will only match with one comment - the comments will appear once for their specific post and that's it.
+// where() in query takes 3 arguments, the first is the field INSIDE the database. the second is the relation e.g. == and third is the comparison e.g. postId we're matching 
+
+export const getComments = (postId, setComments) => {
+    try {
+        let singlePostQuery = query(commentsRef, where("postId", "==", postId))
+
+        onSnapshot(singlePostQuery, (response) => {
+            const comments = response.docs.map((doc) => {
+                return {
+                    id: doc.id,
+                    ...doc.data(),
+                };
+            });
+            setComments(comments);
+        });
+    }
+    catch (err) {
+        console.log(err);
+    }
+
+}

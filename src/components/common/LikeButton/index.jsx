@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { likePost, getLikesByUser, postComment } from '../../../api/FirestoreAPI';
+import { likePost, getLikesByUser, postComment, getComments } from '../../../api/FirestoreAPI';
 import "./index.scss";
 import { BiLike, BiSolidLike } from 'react-icons/bi';
 import { AiOutlineComment } from 'react-icons/ai';
@@ -10,7 +10,8 @@ export default function LikeButton({ userId, postId }) {
     const [likesCount, setLikesCount] = useState(0);
     const [liked, setLiked] = useState(false);
     const [showCommentBox, setShowCommentBox] = useState(false);
-    const [comment, setComment] = useState('');
+    const [comment, setComment] = useState("");
+    const [comments, setComments] = useState([]);
 
     const handleLike = () => {
         likePost(userId, postId, liked);
@@ -21,14 +22,13 @@ export default function LikeButton({ userId, postId }) {
     };
 
     const addComment = () => {
-        postComment(postId, comment, getCurrentTimeStamp('LLL'))
-        .then(() => {
-            setComment('');
-        })
+        postComment(postId, comment, getCurrentTimeStamp('LLL'));
+        setComment("");
     }
 
     useMemo (() => {
         getLikesByUser(userId, postId, setLikesCount, setLiked);
+        getComments(postId, setComments);
     }, [userId, postId])
 
     return (
@@ -70,8 +70,18 @@ export default function LikeButton({ userId, postId }) {
                         name="comment"
                         value={comment}
                     />
-                    <button 
-                        className="add-comment-btn" onClick={addComment}>Add Comment</button>
+                    <button className="add-comment-btn" onClick={addComment}>
+                        Add Comment
+                    </button>
+
+                    {comments.length > 0 ? comments.map((comment) => {
+                        return (
+                            <div>
+                                <p>{comment.comment}</p>
+                                <p>{comment.timeStamp}</p>
+                            </div>
+                        )
+                    }) : <></>}
                 </>
             ) : (
                 <></>
