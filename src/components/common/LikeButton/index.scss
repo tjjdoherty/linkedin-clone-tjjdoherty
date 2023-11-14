@@ -1,16 +1,37 @@
-.like-container {
+.like-comment-container {
     display: flex;
-    justify-content: left;
-    
+    justify-content: center;
+
+    flex-direction: column;
     gap: 5px;
     padding: 7px 10px;
     cursor: pointer;
+    margin-bottom: -15px;
+
+    .hr-line {
+        margin-top: -10px;
+        hr {
+            border-top: 1px solid black;
+        }
+    }
+
+    .like-comment {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+    }
 
     p {
         font-family: system-ui;
         font-weight: 600;
-        font-size: 14px;
-        margin-top: 5px;
+        font-size: 13px;
+     }
+
+    .likes-comment-inner {
+        display: flex;
+        align-items: center;
+        margin-top: -10px;
+        gap: 5px;
     }
+
 
 }
