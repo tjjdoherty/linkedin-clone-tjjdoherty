@@ -1,17 +1,31 @@
 import React, { useMemo, useState } from 'react';
-import { likePost, getLikesByUser } from '../../../api/FirestoreAPI';
+import { likePost, getLikesByUser, postComment } from '../../../api/FirestoreAPI';
 import "./index.scss";
 import { BiLike, BiSolidLike } from 'react-icons/bi';
 import { AiOutlineComment } from 'react-icons/ai';
+import { getCurrentTimeStamp } from '../../../helpers/useMoment';
+
 
 export default function LikeButton({ userId, postId }) {
     const [likesCount, setLikesCount] = useState(0);
     const [liked, setLiked] = useState(false);
     const [showCommentBox, setShowCommentBox] = useState(false);
+    const [comment, setComment] = useState('');
 
     const handleLike = () => {
         likePost(userId, postId, liked);
     };
+
+    const getComment = (event) => {
+        setComment(event.target.value);
+    };
+
+    const addComment = () => {
+        postComment(postId, comment, getCurrentTimeStamp('LLL'))
+        .then(() => {
+            setComment('');
+        })
+    }
 
     useMemo (() => {
         getLikesByUser(userId, postId, setLikesCount, setLiked);
@@ -49,8 +63,15 @@ export default function LikeButton({ userId, postId }) {
             </div>
             {showCommentBox ? ( 
                 <>
-                    <input className="comment-input" placeholder="Add a comment..." />
-                    <button className="add-comment-btn">Add Comment</button>
+                    <input 
+                        onChange={getComment} 
+                        className="comment-input" 
+                        placeholder="Add a comment..."
+                        name="comment"
+                        value={comment}
+                    />
+                    <button 
+                        className="add-comment-btn" onClick={addComment}>Add Comment</button>
                 </>
             ) : (
                 <></>
