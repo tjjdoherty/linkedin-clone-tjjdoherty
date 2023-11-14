@@ -33,5 +33,36 @@
         gap: 5px;
     }
 
+    .comment-input {
+        font-family: system-ui;
+        height: 35px;
+        background-color: rgb(255, 255, 255);
+        padding-left: 7px;
+        border-radius: 20px;
+        border: 2px solid #777777;
+        font-size: 14px;
+
+    }
+    .comment-input:focus {
+        outline: 1px solid #303030;
+        color: black;
+    }
+
+    .add-comment-btn {
+        width: 150px;
+        height: 35px;
+        background-color: #0a66c2;
+        color: whitesmoke;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        border-radius: 30px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .blue {
+        color: #0a66c2
+    }
 
 }

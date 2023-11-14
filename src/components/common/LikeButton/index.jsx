@@ -7,6 +7,7 @@ import { AiOutlineComment } from 'react-icons/ai';
 export default function LikeButton({ userId, postId }) {
     const [likesCount, setLikesCount] = useState(0);
     const [liked, setLiked] = useState(false);
+    const [showCommentBox, setShowCommentBox] = useState(false);
 
     const handleLike = () => {
         likePost(userId, postId, liked);
@@ -17,23 +18,43 @@ export default function LikeButton({ userId, postId }) {
     }, [userId, postId])
 
     return (
-        <div className="like-comment-container" onClick={handleLike}>
+        <div className="like-comment-container">
             <div className="hr-line">
                 <hr />
             </div>
             <div className="like-comment">
-                <div className="likes-comment-inner">
+                <div 
+                className="likes-comment-inner" 
+                onClick={handleLike}
+                >
                     {liked ? <BiSolidLike size={25} color="blue"/> : <BiLike size={25}/>}
                     <p>
                         {liked ? (likesCount === 1 ? 'You like this' : `You and ${likesCount - 1} other${likesCount - 1 === 1 ? '' : 's' } like this`) : "Like"}
                     </p>
                 </div>
                 
-                <div className="likes-comment-inner">
-                    <AiOutlineComment size={30} color="#0a66c2" />
-                    <p>Comment</p>
+                <div 
+                className="likes-comment-inner" 
+                onClick={() => setShowCommentBox(!showCommentBox)}
+                >
+                    {
+                        <AiOutlineComment 
+                            size={30} 
+                            color={showCommentBox ? "#0a66c2" : "#212121"} 
+                        />
+                    }
+
+                    <p className={showCommentBox ? "blue" : "black"}>Comment</p>
                 </div>
-            </div>    
+            </div>
+            {showCommentBox ? ( 
+                <>
+                    <input className="comment-input" placeholder="Add a comment..." />
+                    <button className="add-comment-btn">Add Comment</button>
+                </>
+            ) : (
+                <></>
+                )}
         </div>
     )
 }
