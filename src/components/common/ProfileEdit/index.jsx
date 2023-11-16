@@ -19,8 +19,6 @@ export default function ProfileEdit({ onEdit, currentUser }) {
         await onEdit();
     }
 
-    // console.log(currentUser);
-
     return (
         <div className="profile-card">
             <div className="edit-btn">
