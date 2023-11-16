@@ -59,11 +59,51 @@
         border-radius: 30px;
         margin-top: 15px;
         margin-bottom: 15px;
-        border: 1px solid black;
     }
 
     .blue {
         color: #0a66c2
+    }
+
+    .all-comments {
+        border: 1px solid black;
+        font-family: system-ui;
+        background-color: rgb(240, 240, 240);
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        border-radius: 10px;
+        position: relative;
+        margin: 10px 0px;
+        
+        .comment-name {
+            color: #212121;
+            cursor: pointer;
+            margin-left: 10px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+    
+        .comment-name:hover {
+            text-decoration: underline;
+            color: #0a66c2;
+        }
+
+        .comment-body {
+            margin-left: 10px;
+            margin-top: 0px;
+            font-weight: 400;
+            font-size: 14px;
+        }
+
+        .comment-timeStamp {
+            position: absolute;
+            right: 10px;
+            top: -9px;
+            color: rgba( 0, 0, 0, 0.6);
+            font-size: 12px;
+            font-weight: 400;
+        }
     }
 
 }

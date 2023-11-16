@@ -4,14 +4,18 @@ import "./index.scss";
 import { BiLike, BiSolidLike } from 'react-icons/bi';
 import { AiOutlineComment } from 'react-icons/ai';
 import { getCurrentTimeStamp } from '../../../helpers/useMoment';
+import { useNavigate } from "react-router-dom";
 
 
-export default function LikeButton({ userId, postId }) {
+
+export default function LikeButton({ currentUser, userId, postId }) {
     const [likesCount, setLikesCount] = useState(0);
     const [liked, setLiked] = useState(false);
     const [showCommentBox, setShowCommentBox] = useState(false);
     const [comment, setComment] = useState("");
     const [comments, setComments] = useState([]);
+
+    let navigate = useNavigate();
 
     const handleLike = () => {
         likePost(userId, postId, liked);
@@ -22,9 +26,11 @@ export default function LikeButton({ userId, postId }) {
     };
 
     const addComment = () => {
-        postComment(postId, comment, getCurrentTimeStamp('LLL'));
+        postComment(postId, comment, getCurrentTimeStamp('LLL'), currentUser?.name);
         setComment("");
     }
+
+    // useMemo getComments populates the comments array as a state, the logic is done in FirestoreAPI
 
     useMemo (() => {
         getLikesByUser(userId, postId, setLikesCount, setLiked);
@@ -76,9 +82,20 @@ export default function LikeButton({ userId, postId }) {
 
                     {comments.length > 0 ? comments.map((comment) => {
                         return (
-                            <div>
-                                <p>{comment.comment}</p>
-                                <p>{comment.timeStamp}</p>
+                            <div className="all-comments">
+                                <p 
+                                    className='comment-name' 
+                                    onClick={() => 
+                                        navigate('/profile', {
+                                        state: { id: currentUser?.userID, email: currentUser.userEmail },
+                                        }) 
+                                    }
+                                >
+                                {comment.name}
+                                </p>
+                            <p className='comment-body'>{comment.comment}</p>
+
+                            <p className='comment-timeStamp'>{comment.timeStamp}</p>
                             </div>
                         )
                     }) : <></>}
