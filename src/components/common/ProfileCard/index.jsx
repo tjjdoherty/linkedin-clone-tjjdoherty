@@ -31,7 +31,7 @@ export default function ProfileCard({ currentUser, onEdit }) {
         }
     }, []);
 
-    console.log(currentProfile);
+    console.log(currentProfile.email);
     console.log(localStorage.getItem('userEmail'));
 
     return ( 
@@ -100,7 +100,7 @@ export default function ProfileCard({ currentUser, onEdit }) {
             <div className="post-status-main">
                 {allStatus
                 .filter((item) => {
-                    return item.userEmail === localStorage.getItem('userEmail')
+                    return item.userEmail === currentProfile.email
                 })
                 .map((posts) => {
                     return (
