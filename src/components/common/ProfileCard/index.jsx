@@ -3,6 +3,7 @@ import { getSingleStatus, getSingleUser } from '../../../api/FirestoreAPI';
 import PostsCard from "../PostsCard";
 import { HiOutlinePencil } from 'react-icons/hi';
 import { useLocation } from "react-router-dom";
+import { uploadImage as uploadImageAPI } from "../../../api/ImageUpload";
 import "./index.scss";
 
 // 4:49:58 - useLocation saves the email (for single user) and post ID (for single status) these are used to map a single user or single status respectively.
@@ -16,9 +17,14 @@ export default function ProfileCard({ currentUser, onEdit }) {
     let location = useLocation();
     const [allStatus, setAllStatus] = useState([]);
     const [currentProfile, setCurrentProfile] = useState({});
+    const [currentImage, setCurrentImage] = useState({});
 
     const getImage = (event) => {
-        console.log(event.target.files);
+        setCurrentImage(event.target.files[0]);
+    }
+
+    const uploadImage = () => {
+        uploadImageAPI(currentImage);
     }
 
     useMemo(() => {
@@ -38,6 +44,7 @@ export default function ProfileCard({ currentUser, onEdit }) {
         <>
             <div className="profile-card">
                 <input type={"file"} onChange={getImage} />
+                <button onClick={uploadImage}>Upload</button>
                 <div className="edit-btn">
                     <HiOutlinePencil className="edit-icon" onClick={onEdit}/>
                 </div>
