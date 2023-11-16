@@ -31,8 +31,8 @@ export default function ProfileCard({ currentUser, onEdit }) {
         }
     }, []);
 
-    console.log(currentProfile.email);
-    console.log(localStorage.getItem('userEmail'));
+    // console.log(currentProfile.email);
+    // console.log(localStorage.getItem('userEmail'));
 
     return ( 
         <>
