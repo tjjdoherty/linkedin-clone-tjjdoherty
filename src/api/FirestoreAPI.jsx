@@ -96,7 +96,7 @@ export const editProfile = (userID, payload) => {
 
     updateDoc(userToEdit, payload)
     .then(() => {
-        toast.success("Updated Profile Details");
+        toast.success("Successfully Updated Profile Details");
     })
     .catch((err) => {
         console.log(err);

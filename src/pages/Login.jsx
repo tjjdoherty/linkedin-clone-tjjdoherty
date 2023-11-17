@@ -16,7 +16,6 @@ export default function Login() {
         onAuthStateChanged(auth, (response) => {
             if (response?.accessToken) {
                 navigate("/home");
-                console.log("Logged in, no loader")
             } else {
                 setLoading(false);
             }
