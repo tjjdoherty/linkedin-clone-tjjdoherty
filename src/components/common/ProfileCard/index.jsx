@@ -1,5 +1,5 @@
-import React, { useState, useMemo, useEffect } from "react";
-import { getSingleStatus, getSingleUser, editProfile } from '../../../api/FirestoreAPI';
+import React, { useState, useMemo } from "react";
+import { getSingleStatus, getSingleUser } from '../../../api/FirestoreAPI';
 import PostsCard from "../PostsCard";
 import { HiOutlinePencil } from 'react-icons/hi';
 import { useLocation } from "react-router-dom";
@@ -37,9 +37,6 @@ export default function ProfileCard({ currentUser, onEdit }) {
         }
     }, []);
 
-    // console.log(currentProfile.email);
-    // console.log(localStorage.getItem('userEmail'));
-    // console.log(currentUser?.imageLink);
 
     return ( 
         <>
@@ -51,7 +48,7 @@ export default function ProfileCard({ currentUser, onEdit }) {
                 </div>
                 <div className="profile-info">
                     <div>
-                        <img className="profile-picture" src={currentUser?.imageLink} alt="Profile Picture" />
+                        <img className="profile-picture" src={currentProfile?.imageLink} alt="Profile Picture" />
                         <h3 className="userName">
                             {Object.values(currentProfile).length === 0
                                 ? currentUser.name 
