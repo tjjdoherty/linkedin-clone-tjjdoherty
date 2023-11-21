@@ -2,7 +2,9 @@ import { storage } from "../firebaseConfig";
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 import { editProfile } from "./FirestoreAPI";
 
-export const uploadImage = (file, userId) => {
+// with progress bar - I set setProgress(0) so that when you return to upload another photo later, the completed progress bar is still not sitting there.
+
+export const uploadImage = (file, userId, setModalOpen, setProgress) => {
     const profilePicsRef = ref(storage, `profileImages/${file.name}`)
     const uploadTask = uploadBytesResumable(profilePicsRef, file)
 
@@ -11,7 +13,7 @@ export const uploadImage = (file, userId) => {
         (snapshot) => {
             const progress = Math.round(
                 (snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-                console.log(progress);
+                setProgress(progress);
             },
             (error) => {
                 console.log(error);
@@ -19,6 +21,8 @@ export const uploadImage = (file, userId) => {
             () => {
                 getDownloadURL(uploadTask.snapshot.ref).then((response) => {
                     editProfile(userId, { imageLink: response });
+                    setProgress(0);
+                    setModalOpen(false);
                 });
             }
     );

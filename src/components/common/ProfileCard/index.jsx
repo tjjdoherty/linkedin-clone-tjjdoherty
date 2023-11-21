@@ -4,6 +4,7 @@ import PostsCard from "../PostsCard";
 import { HiOutlinePencil } from 'react-icons/hi';
 import { useLocation } from "react-router-dom";
 import { uploadImage as uploadImageAPI } from "../../../api/ImageUpload";
+import FileUploadModal from "../FileUploadModal";
 import "./index.scss";
 
 // 4:49:58 - useLocation saves the email (for single user) and post ID (for single status) these are used to map a single user or single status respectively.
@@ -18,13 +19,15 @@ export default function ProfileCard({ currentUser, onEdit }) {
     const [allStatus, setAllStatus] = useState([]);
     const [currentProfile, setCurrentProfile] = useState({});
     const [currentImage, setCurrentImage] = useState({});
+    const [progress, setProgress] = useState(0);
+    const [modalOpen, setModalOpen] = useState(false);
 
     const getImage = (event) => {
         setCurrentImage(event.target.files[0]);
     }
 
     const uploadImage = () => {
-        uploadImageAPI(currentImage, currentUser?.userID);
+        uploadImageAPI(currentImage, currentUser?.userID, setModalOpen, setProgress);
     }
 
     useMemo(() => {
@@ -40,15 +43,30 @@ export default function ProfileCard({ currentUser, onEdit }) {
 
     return ( 
         <>
+            <FileUploadModal 
+                modalOpen={modalOpen} 
+                setModalOpen={setModalOpen} 
+                getImage={getImage} 
+                uploadImage={uploadImage}
+                currentImage={currentImage}
+                progress={progress}
+            />
             <div className="profile-card">
-                <input type={"file"} onChange={getImage} />
-                <button onClick={uploadImage}>Upload</button>
                 <div className="edit-btn">
                     <HiOutlinePencil className="edit-icon" onClick={onEdit}/>
                 </div>
                 <div className="profile-info">
                     <div>
-                        <img className="profile-picture" src={currentProfile?.imageLink} alt="Profile Picture" />
+                        <img 
+                            onClick={() => setModalOpen(true)}
+                            className="profile-picture" 
+                            src={
+                                Object.values(currentProfile).length === 0
+                                ? currentUser.imageLink
+                                : currentProfile?.imageLink
+                            } 
+                            alt="Profile Picture"
+                        />
                         <h3 className="userName">
                             {Object.values(currentProfile).length === 0
                                 ? currentUser.name 
