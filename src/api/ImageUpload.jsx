@@ -4,7 +4,7 @@ import { editProfile } from "./FirestoreAPI";
 
 // with progress bar - I set setProgress(0) so that when you return to upload another photo later, the completed progress bar is still not sitting there.
 
-export const uploadImage = (file, userId, setModalOpen, setProgress) => {
+export const uploadImage = (file, userId, setModalOpen, setProgress, setCurrentImage) => {
     const profilePicsRef = ref(storage, `profileImages/${file.name}`)
     const uploadTask = uploadBytesResumable(profilePicsRef, file)
 
@@ -22,6 +22,7 @@ export const uploadImage = (file, userId, setModalOpen, setProgress) => {
                 getDownloadURL(uploadTask.snapshot.ref).then((response) => {
                     editProfile(userId, { imageLink: response });
                     setProgress(0);
+                    setCurrentImage({});
                     setModalOpen(false);
                 });
             }

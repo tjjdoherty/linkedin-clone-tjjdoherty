@@ -27,7 +27,7 @@ export default function ProfileCard({ currentUser, onEdit }) {
     }
 
     const uploadImage = () => {
-        uploadImageAPI(currentImage, currentUser?.userID, setModalOpen, setProgress);
+        uploadImageAPI(currentImage, currentUser?.userID, setModalOpen, setProgress, setCurrentImage);
     }
 
     useMemo(() => {
