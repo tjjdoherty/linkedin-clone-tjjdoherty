@@ -8,7 +8,7 @@
     margin-bottom: -15px;
 
     .hr-line {
-        margin-top: -10px;
+        margin-top: -5px;
         hr {
             border-top: 1px solid black;
         }
@@ -20,7 +20,7 @@
     }
 
     p {
-        font-family: system-ui;
+        font-family: Inter, sans-serif;
         font-weight: 600;
         font-size: 13px;
      }
@@ -66,7 +66,6 @@
     }
 
     .all-comments {
-        border: 1px solid black;
         font-family: system-ui;
         background-color: rgb(240, 240, 240);
         display: flex;
@@ -74,7 +73,7 @@
         flex-direction: column;
         border-radius: 10px;
         position: relative;
-        margin: 8px 0px;
+        margin: 5px 0px;
         
         .comment-name {
             color: #212121;

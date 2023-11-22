@@ -124,7 +124,9 @@ export default function ProfileCard({ currentUser, onEdit }) {
             <div className="post-status-main">
                 {allStatus
                 .filter((item) => {
-                    return item.userEmail === currentProfile.email
+                    return item.userEmail === (Object.values(currentProfile).length === 0
+                    ? currentUser.email
+                    : currentProfile.email)
                 })
                 .map((posts) => {
                     return (
