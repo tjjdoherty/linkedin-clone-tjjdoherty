@@ -8,10 +8,30 @@
     display: flex;
     flex-direction: column;
     padding-bottom: 20px;
+    position: relative;
 
     .user-picture-wrapper {
         display: flex;
         padding: 8px;
+        position: relative;
+
+        .action-container {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            display: flex;
+            gap: 5px;
+
+            .action-icon {
+                cursor: pointer;
+                padding: 5px;
+            }
+        }
+
+        .action-icon:hover {
+            background-color: #b7b7b7;
+            border-radius: 40%;
+        }
     }
 
     .profile-picture-preview {

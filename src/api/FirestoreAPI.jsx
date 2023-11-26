@@ -189,3 +189,32 @@ export const getComments = (postId, setComments) => {
     }
 
 }
+
+export const updatePost = (id, status) => {
+    let docToUpdate = doc(postsRef, id);
+
+    try {
+        updateDoc(docToUpdate, { status })
+        .then(() => {
+            toast.success("Post has been updated.");
+        })
+
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+export const deletePost = (id) => {
+    let docToDelete = doc(postsRef, id);
+
+    try {
+        deleteDoc(docToDelete)
+        .then(() => {
+            toast.success("Post has been deleted.");
+        })
+
+    } catch(err) {
+        console.log(err);
+
+    }
+}

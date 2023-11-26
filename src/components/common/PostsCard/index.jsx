@@ -1,13 +1,15 @@
 import React, { useState, useMemo } from 'react';
 import { useNavigate } from "react-router-dom";
-import { getCurrentUser, getAllUsers } from "../../../api/FirestoreAPI";
+import { getCurrentUser, getAllUsers, deletePost } from "../../../api/FirestoreAPI";
 import LikeButton from "../LikeButton";
+import { BsPencil } from "react-icons/bs";
+import { FaTrashAlt } from "react-icons/fa";
 import './index.scss';
 
 
 // now we want to go to profile page when we click on a profile name link.
 
-export default function PostsCard({ posts, id }) {
+export default function PostsCard({ posts, id, getEditData }) {
     let navigate = useNavigate();
     const [currentUser, setCurrentUser] = useState({});
     const [allUsers, setAllUsers] = useState([]);
@@ -19,6 +21,23 @@ export default function PostsCard({ posts, id }) {
     return (
         <div className="posts-card" key={id}>
             <div className="user-picture-wrapper">
+                {currentUser.userID === posts.userID ? (
+                <div className="action-container">
+                    <BsPencil 
+                        size={20} 
+                        className="action-icon" 
+                        onClick={() => getEditData(posts)} 
+                    />
+                    <FaTrashAlt 
+                        size={20} 
+                        className="action-icon"
+                        onClick={() => deletePost(posts.id)}
+                    />
+                </div>
+                ) : (
+                <></>
+                )}
+
                 <img
                 alt="profile-picture-preview"
                 className="profile-picture-preview"
