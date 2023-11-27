@@ -5,8 +5,50 @@
     flex-direction: column;
     width: 80%;
 
+    .user-headline {
+        width: 550px;
+        height: auto;
+        border: 1px solid #b7b7b7;
+        background-color: rgba(255, 255, 255, 0.87);
+        border-radius: 7px;
+        margin-top: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-top: -60px;
+            border: 1px solid #b7b7b7;
+            padding: 1px;
+        }
+
+        .name {
+            font-weight: 800;
+            font-family: system-ui;
+        }
+
+        .headline {
+            font-family: system-ui;
+            margin-top: -15px;
+        }
+
+    }
 
     .post-status {
+
+        img {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 10px;
+            margin-left: -10px;
+        }
+
         width: 550px;
         height: 120px;
         border: 1px solid #b7b7b7;

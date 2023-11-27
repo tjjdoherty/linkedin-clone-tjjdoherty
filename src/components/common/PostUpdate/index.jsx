@@ -54,7 +54,14 @@ export default function PostStatus({ currentUser }) {
 
     return (
     <div className="post-status-main">
+        <div className="user-headline">
+            <img src={currentUser.imageLink} alt="image-link" />
+            <p classname='name'>{currentUser.name}</p>
+            <p className='headline'>{currentUser.headline}</p>
+
+        </div>
         <div className="post-status">
+        <img src={currentUser.imageLink} alt="image-link" />
             <button className="open-post-modal" onClick={() => {
                 setIsEdit(false);
                 setModalOpen(true)

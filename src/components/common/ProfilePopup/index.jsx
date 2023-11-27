@@ -1,7 +1,6 @@
 import React from "react";
 import { onLogout } from "../../../api/AuthAPI";
 import { useNavigate } from "react-router-dom";
-import { getCurrentUser } from "../../../api/FirestoreAPI";
 import Button from "../Button";
 import "./index.scss"
 
@@ -19,7 +18,7 @@ export default function ProfilePopup({ currentUser }) {
                 title='View Profile'
                 onClick={() =>
                 navigate("/profile", {
-                    state: { id: currentUser?.userID, },
+                    state: { id: currentUser?.userID },
                     })
                 }
             />
