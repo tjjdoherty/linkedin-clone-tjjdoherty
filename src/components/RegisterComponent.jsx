@@ -19,7 +19,8 @@ export default function RegisterComponent() {
                 userID: getUniqueID(),
                 name: credentials.name,
                 email: credentials.email, 
-                password: credentials.password
+                password: credentials.password,
+                imageLink: "https://www.peta.org.uk/wp-content/uploads/2022/02/cute-cat-keep-cats-indoors-peta-1536x935.jpg"
             });
             localStorage.setItem('userEmail', result.user.email);
             navigate('/home');

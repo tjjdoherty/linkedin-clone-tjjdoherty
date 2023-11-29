@@ -34,7 +34,7 @@ export default function Topbar({ currentUser }) {
                 <BsPeopleFill 
                     size={35} 
                     className="react-icon"
-                    onClick={() => goToRoute("/profile")}
+                    onClick={() => goToRoute("/connections")}
                 />
                 <BiSolidBriefcaseAlt 
                     size={35} 
