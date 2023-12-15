@@ -1,6 +1,6 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-import { getCurrentUser, getAllUsers, deletePost } from "../../../api/FirestoreAPI";
+import { getCurrentUser, getAllUsers, deletePost, getConnections } from "../../../api/FirestoreAPI";
 import LikeButton from "../LikeButton";
 import { BsPencil } from "react-icons/bs";
 import { FaTrashAlt } from "react-icons/fa";
@@ -9,16 +9,24 @@ import './index.scss';
 
 // now we want to go to profile page when we click on a profile name link.
 
+// line 25 useEffect - "id" is targetID in connections database table
+
 export default function PostsCard({ posts, id, getEditData }) {
     let navigate = useNavigate();
     const [currentUser, setCurrentUser] = useState({});
     const [allUsers, setAllUsers] = useState([]);
+    const [isConnected, setIsConnected] = useState(false);
+
     useMemo(() => {
         getCurrentUser(setCurrentUser);
         getAllUsers(setAllUsers);
     }, [])
 
-    return (
+    useEffect(() => {
+        getConnections(currentUser.userID, posts.userID, setIsConnected);
+    }, [currentUser.userID, posts.userID]);
+
+    return isConnected ? (
         <div className="posts-card" key={id}>
             <div className="user-picture-wrapper">
                 {currentUser.userID === posts.userID ? (
@@ -63,5 +71,7 @@ export default function PostsCard({ posts, id, getEditData }) {
 
             <LikeButton currentUser={currentUser} userId={currentUser?.userID} postId={posts.id}/>
         </div>
+    ) : (
+        <></>
     );
 }

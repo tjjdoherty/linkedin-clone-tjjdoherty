@@ -244,7 +244,7 @@ export const getConnections = (userID, targetID, setIsConnected) => {
 
             const isConnected = connections.some((connection) => connection.userID === userID)
 
-            console.log(isConnected);
+            setIsConnected(isConnected);
         });
     } catch (err) {
         console.log(err);
