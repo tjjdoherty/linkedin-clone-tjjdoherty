@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { IoPersonAdd } from "react-icons/io5";
 import { getConnections } from '../../../api/FirestoreAPI';
 
 export default function ConnectedUsers({ user, currentUser, getCurrentUser }) {
@@ -11,9 +12,15 @@ export default function ConnectedUsers({ user, currentUser, getCurrentUser }) {
   return isConnected ? (
     <></> )
     : (
-    <div className="grid-child" onClick={() => getCurrentUser(user.userID)}>
-        <p>{user.name}</p>
-        <p>{user.headline}</p>
+    <div className="grid-child">
+        <img src={user.imageLink} />
+        <p className="name">{user.name}</p>
+        <p className="headline">{user.headline}</p>
+
+        <button onClick={() => getCurrentUser(user.userID)}>
+          <IoPersonAdd size={20} /> 
+          Connect
+        </button>
     </div>
   )
 }
