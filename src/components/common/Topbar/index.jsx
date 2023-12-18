@@ -7,11 +7,15 @@ import { BsPeopleFill } from 'react-icons/bs';
 import { IoMdNotificationsOutline } from 'react-icons/io';
 import user from '../../../assets/userIcon.png';
 import ProfilePopup from '../ProfilePopup';
+import SearchUsers from '../SearchUsers';
 
 //const goToRoute - this is the navigate function for all of the top bar icons. Line 2 import useNavigate from react router dom...no need for the helpers/useNavigate?
 
 export default function Topbar({ currentUser }) {
     const [profilePopupOpen, setProfilePopupOpen] = useState(false);
+    const [isSearch, setIsSearch] = useState(false);
+    const [searchInput, setSearchInput] = useState('');
+
     let navigate = useNavigate();
 
     const goToRoute = (route) => {
@@ -21,10 +25,12 @@ export default function Topbar({ currentUser }) {
     return (
         <div className="topbar-main">
             <img className="linkedInLogo" src={LinkedInLogo} alt='LinkedInLogo' />
+            { isSearch ? <SearchUsers setIsSearch={setIsSearch} setSearchInput={setSearchInput} /> : 
             <div className="react-icons">    
                 <BiSearchAlt2 
                     size={35} 
-                    className="react-icon" 
+                    className="react-icon"
+                    onClick={() => setIsSearch(true)}
                 />
                 <BiHome
                     size={35} 
@@ -48,14 +54,24 @@ export default function Topbar({ currentUser }) {
                     size={35} 
                     className="react-icon" 
                 />
-            </div>
+            </div> }
+            
             <img 
                 className="userLogo" 
                 src={user} 
                 alt='user' 
                 onClick={() => setProfilePopupOpen(!profilePopupOpen)}
             />
+
+            { searchInput.length === 0 ? ( 
+                <></>
+            ) : (
+                <div className="search-results">
+
+                </div>
+            )}
+
             {profilePopupOpen && <ProfilePopup currentUser={currentUser}/>}
         </div>
-    )
+    );
 }
