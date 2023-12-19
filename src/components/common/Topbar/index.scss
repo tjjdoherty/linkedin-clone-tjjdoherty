@@ -40,9 +40,34 @@
     position: absolute;
     left: 100px;
     top: 50px;
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: auto;
     background-color: white;
     border-radius: 10px;
     border: 1px solid #bbbbbb;
+
+    .search-inner{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        cursor: pointer;
+
+        img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .name{
+            font-family: system-ui;
+            font-size: 16px;
+        }
+    }
+
+    .search-inner:hover {
+        background-color: #bbbbbb;
+    }
 }
