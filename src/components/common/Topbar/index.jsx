@@ -29,6 +29,18 @@ export default function Topbar({ currentUser }) {
         getAllUsers(setUsers);
     })
 
+    // NOTE: previously, in state below i typed userID: user.userID and when clicking through to the profile, posts were not appearing
+    // why are posts only appearing when using state as id: user.id and not userID: user.userID ???
+
+    const openUser = (user) => {
+        navigate("/profile", { 
+            state: {
+                id: user.id, 
+                email: user.email
+            },
+        });
+    };
+
     const handleSearch = () => {
         if(searchInput !== '') {
             let searched = users.filter((user) => {
@@ -103,7 +115,7 @@ export default function Topbar({ currentUser }) {
                         <div className="search-inner">No Results Found</div>
                     ) : (
                         filteredUsers.map((user) => (
-                            <div className="search-inner">
+                            <div className="search-inner" onClick={() => openUser(user)}>
                                 <img src={user.imageLink} />
                                 <p classname="name">{user.name}</p>
                                 
