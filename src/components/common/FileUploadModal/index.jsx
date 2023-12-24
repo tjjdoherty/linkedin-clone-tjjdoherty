@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './index.scss';
-import { Button, Modal, Progress, Space } from 'antd';
+import { Button, Modal, Progress } from 'antd';
 
 // input below is hidden, but the id and for twinned together mean the label is going to call the getImage function that is handed down
 

@@ -26,7 +26,7 @@ export default function PostsCard({ posts, id, getEditData }) {
         getConnections(currentUser.userID, posts.userID, setIsConnected);
     }, [currentUser.userID, posts.userID]);
 
-    return isConnected ? (
+    return isConnected || currentUser.userID == posts.userID ? (
         <div className="posts-card" key={id}>
             <div className="user-picture-wrapper">
                 {currentUser.userID === posts.userID ? (
@@ -67,7 +67,10 @@ export default function PostsCard({ posts, id, getEditData }) {
                     <p className="timeStamp">{posts.timeStamp}</p>
                 </div >
             </div>
+
             <p className="status">{posts.status}</p>
+
+            {posts.postImage ? <img className="post-image" src={posts.postImage} alt="post-image"/> : <></>}
 
             <LikeButton currentUser={currentUser} userId={currentUser?.userID} postId={posts.id}/>
         </div>
