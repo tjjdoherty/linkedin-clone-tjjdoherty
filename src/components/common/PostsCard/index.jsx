@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
+import { Button, Modal } from 'antd';
 import { getCurrentUser, getAllUsers, deletePost, getConnections } from "../../../api/FirestoreAPI";
 import LikeButton from "../LikeButton";
 import { BsPencil } from "react-icons/bs";
@@ -16,6 +17,7 @@ export default function PostsCard({ posts, id, getEditData }) {
     const [currentUser, setCurrentUser] = useState({});
     const [allUsers, setAllUsers] = useState([]);
     const [isConnected, setIsConnected] = useState(false);
+    const [imageModal, setImageModal] = useState(false);
 
     useMemo(() => {
         getCurrentUser(setCurrentUser);
@@ -50,8 +52,8 @@ export default function PostsCard({ posts, id, getEditData }) {
                 alt="profile-picture-preview"
                 className="profile-picture-preview"
                 src={allUsers
-                .filter((item) => item.userID === posts.userID)
-                .map((item) => item.imageLink)[0]} 
+                    .filter((item) => item.userID === posts.userID)
+                    .map((item) => item.imageLink)[0]} 
                 />
                 <div>
                     <p 
@@ -70,9 +72,33 @@ export default function PostsCard({ posts, id, getEditData }) {
 
             <p className="status">{posts.status}</p>
 
-            {posts.postImage ? <img className="post-image" src={posts.postImage} alt="post-image"/> : <></>}
+            {posts.postImage ? (
+                <img 
+                    className="post-image" 
+                    onClick={() => setImageModal(true)} 
+                    src={posts.postImage} 
+                    alt="post-image"
+                /> 
+                ) : (
+                    <></>
+                )
+            }
 
             <LikeButton currentUser={currentUser} userId={currentUser?.userID} postId={posts.id}/>
+
+            <Modal
+                centered
+                open={imageModal}
+                onOk={() => setImageModal(false)}
+                onCancel={() => setImageModal(false)}
+                footer={[]}
+            >
+                <img 
+                    className="modal-post-image" 
+                    src={posts.postImage} 
+                    alt="post-image"
+                />
+            </Modal>
         </div>
     ) : (
         <></>

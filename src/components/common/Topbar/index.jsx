@@ -102,7 +102,7 @@ export default function Topbar({ currentUser }) {
             
             <img 
                 className="userLogo" 
-                src={user} 
+                src={currentUser.imageLink} 
                 alt='user' 
                 onClick={() => setProfilePopupOpen(!profilePopupOpen)}
             />

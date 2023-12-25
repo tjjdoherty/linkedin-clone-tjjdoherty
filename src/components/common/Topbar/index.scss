@@ -31,9 +31,12 @@
 
 .userLogo {
     width: 40px;
+    height: 40px;
+    object-fit: cover;
     position: absolute;
     right: 30px;
     cursor: pointer;
+    border-radius: 50%;
 }
 
 .search-results {
