@@ -70,7 +70,7 @@ export default function PostsCard({ posts, id, getEditData }) {
                 </div >
             </div>
 
-            <p className="status">{posts.status}</p>
+            <div className="status" dangerouslySetInnerHTML={{__html: posts.status }}></div>
 
             {posts.postImage ? (
                 <img 
@@ -81,8 +81,7 @@ export default function PostsCard({ posts, id, getEditData }) {
                 /> 
                 ) : (
                     <></>
-                )
-            }
+            )}
 
             <LikeButton currentUser={currentUser} userId={currentUser?.userID} postId={posts.id}/>
 

@@ -71,9 +71,10 @@
         font-size: 16px;
         font-weight: 400;
         color: rgba(0, 0, 0, 0.9);
-        margin: 10px 0 0 10px;
+        margin: 0px 0 0 10px;
     }
 
+    // might need to remove margin below in .post-image
     .post-image {
         margin: 15px 10px;
         cursor: pointer;
@@ -81,6 +82,7 @@
 }
 
 .modal-post-image {
-    width: 80%;
+    cursor: pointer;
+    width: 100%;
     margin-top: 30px;
 }

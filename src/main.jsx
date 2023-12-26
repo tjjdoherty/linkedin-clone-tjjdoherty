@@ -6,6 +6,7 @@ import {
 import { router } from './Routes';
 import { app, auth } from './firebaseConfig.js';
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-quill/dist/quill.snow.css';
 import 'react-toastify/dist/ReactToastify.css';
 import './index.scss'
 
